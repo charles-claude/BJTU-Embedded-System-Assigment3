@@ -12,7 +12,7 @@ Step 1:
 ```bash
 git clone https://github.com/raspberrypi/tools ~/tools
 ```
-	And modify the $PATH environment variable to indicate the files location to the cross compiler.
+And modify the $PATH environment variable to indicate the files location to the cross compiler.
 ```bash
 echo PATH=\$PATH:~/tools/arm-bcm2708/arm-linux-gnueabihf/bin >> ~/.bashrc
 source ~/.bashrc
