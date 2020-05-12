@@ -27,11 +27,29 @@ And we install all required dependencies:
 ```bash
 sudo apt install git bc bison flex libssl-dev make libc6-dev libncurses5-dev
 ```
-Step3:  
-	We go into the correct directory, set the correct configuration and launch the cross compilation.
+Step 3:  
+We go into the correct directory, set the correct configuration and launch the cross compilation.
 ```bash
 cd linux
 KERNEL=kernel7l
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2711_defconfig
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage modules dtbs
 ```
+
+Now we need to install Qemu to run our custom kernel.  
+It can be downloaded from the official website : https://www.qemu.org/
+We also have to dowload a official resbian image from https://www.raspberrypi.org/downloads/raspbian/
+
+Then we are ready to run our Raspberry pi on Qemu using the following command inside a Windows Powershell:
+
+```powershell
+qemu-system-arm -M versatilepb -cpu arm1176 -m 256 -hda .\2020-02-13-raspbian-buster.img -kernel .\kernel -append 'root=/dev/sda2 panic=1' -no-reboot
+```
+
+We can see the result on the following screenshots :
+
+The start of Raspbian booting in Qemu:
+![Raspbian booting](https://github.com/charles-claude/BJTU-Embedded-System-Assigment3/blob/master/screenshots/embedded_screen1.png)
+
+Raspbian working perfectly
+![Raspbian booting](https://github.com/charles-claude/BJTU-Embedded-System-Assigment3/blob/master/screenshots/embedded_screen2.png)
